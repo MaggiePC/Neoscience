@@ -1,0 +1,112 @@
+/* ========= Tailwind ========= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========= Reset/Defaults suaves ========= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+html, body, #root {
+  height: 100%;
+}
+/* For Firefox */
+html {
+  scrollbar-width: auto; /* 'auto' respects our 18px width */
+  scrollbar-color: #7e22ce transparent; /* Purple thumb, transparent track */
+}
+
+body {
+  margin: 0;
+  /* color y fondo por defecto (útil para evitar “flash” de blanco) */
+  background: #0b0914;       /* mismo tono que estamos usando */
+  color: #ffffff;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+               Helvetica Neue, Arial, Noto Sans, "Apple Color Emoji",
+               "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Medios fluidos por defecto */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Evitar saltos de fuente en inputs/botones */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Enlaces sin subrayado por defecto (lo manejamos con Tailwind) */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Botón “reset” básico */
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Accesibilidad: foco visible bonito */
+:focus-visible {
+  outline: 2px solid #8b5cf6;      /* violet-500 */
+  outline-offset: 2px;
+}
+
+/* Selección de texto */
+::selection {
+  background: #6d28d9;             /* violet-700 */
+  color: #fff;
+}
+
+
+
+/* For Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 18px; /* Thick 18px scrollbar */
+  height: 18px; /* For horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7e22ce; /* Solid purple thumb */
+  border-radius: 20px; /* Pill-shaped thumb */
+  border: 4px solid transparent; /* Creates padding effect */
+  background-clip: padding-box; /* Prevents color bleed */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9333ea; /* Lighter purple on hover */
+}
+::-webkit-scrollbar-track {
+  background: transparent; /* Fully transparent track */
+}
+
+/* Si usas modales/portales, ayuda a “bloquear” el scroll del body */
+body.modal-open {
+  overflow: hidden;
+}

@@ -1,0 +1,9 @@
+:root{
+  --shell-max: 1200px;  /* ajústalo si quieres más/menos ancho */
+}
+
+.shell{
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: 1rem; /* igual que px-4 */
+}

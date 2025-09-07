@@ -1,0 +1,13 @@
+.nav {
+  position: fixed;
+  inset-block-start: 0; /* top */
+  z-index: 50;
+  width: 100%;
+}
+
+.glass {
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(112, 0, 204, .68); /* morado translúcido */
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+}
