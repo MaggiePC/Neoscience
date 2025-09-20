@@ -1,0 +1,15 @@
+:root{
+  --bg: #0a0a1a;
+  --bg-2: #1a1a2e;
+  --bg-3: #16213e;
+  --card: rgba(255,255,255,0.06);
+  --card-90: rgba(255,255,255,0.90);
+  --accent: #5a9eff;      /* tu “accent” */
+  --accent-30: rgba(90,158,255,0.30);
+  --foreground: #e5e7eb;  /* texto claro */
+  --border: rgba(255,255,255,0.18);
+  --radius: 14px;
+  --container: 1200px;
+}
+
+  

@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* src/index.css */
+:root {
+  --header-h: 64px;   /* ajusta al alto real de tu header */
+  --footer-h: 80px;   /* ajusta al alto real de tu footer */
+
+  /* Colores, tipografía y otros estilos globales */
+  --primary-color: #61dafb;
+  --secondary-color: #282c34;
+  --font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos de caja globales */
+*, *::before, *::after {
+  box-sizing: border-box;
+}

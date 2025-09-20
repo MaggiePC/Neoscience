@@ -1,0 +1,76 @@
+.header{
+    position:fixed; inset:0 auto auto 0; right:0; z-index:50;
+    background: rgba(0,0,0,.80);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--accent-30);
+  }
+  
+  .inner{
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 12px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  
+  /* Brand */
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .logo{ width:40px; height:40px; border-radius:999px;
+    background: linear-gradient(135deg, var(--accent), #7aa8ff);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .title{ font-size:18px; font-weight:600; color: var(--foreground); }
+  
+  /* Nav */
+  .nav{ display:none; align-items:center; gap:16px; }
+  @media (min-width:768px){ .nav{ display:flex; } }
+  
+  .item{ position:relative; }
+  .btn{
+    padding:8px 12px; border-radius:10px; border:1px solid transparent;
+    display:inline-flex; align-items:center; gap:6px;
+    background: transparent; color: color-mix(in oklab, var(--foreground), #000 20%);
+    cursor:pointer; transition: background .15s, color .15s, transform .15s;
+  }
+  .btn:hover{ background: color-mix(in oklab, var(--accent), transparent 80%); color: var(--foreground); }
+  .btnActive{
+    background: var(--accent);
+    color: white;
+  }
+  
+  /* chevron */
+  .chev{ width:14px; height:14px; transition: transform .2s; }
+  .chevOpen{ transform: rotate(180deg); }
+  
+  /* Dropdown */
+  .dropdown{
+    position:absolute; left:0; top:calc(100% + 8px);
+    width:200px;
+    background: color-mix(in oklab, var(--card), #000 0%);
+    backdrop-filter: blur(6px);
+    border:1px solid var(--accent-30);
+    border-radius:12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    overflow:hidden;
+  }
+  .dropBtn{
+    width:100%; text-align:left; display:flex; align-items:center; gap:10px;
+    padding:12px 14px; background:transparent; border:none; cursor:pointer;
+    color: color-mix(in oklab, var(--foreground), #000 20%);
+    transition: background .15s, color .15s;
+  }
+  .dropBtn:hover{ background: color-mix(in oklab, var(--accent), transparent 80%); color: var(--foreground); }
+  .dropBtnActive{ background: var(--accent); color:white; }
+  
+  /* Auth area */
+  .auth{ display:flex; align-items:center; gap:10px; }
+  .ghost{
+    padding:8px 12px; border-radius:10px; background:transparent; border:1px solid var(--border);
+    color: color-mix(in oklab, var(--foreground), #000 20%); cursor:pointer;
+  }
+  .ghost:hover{ color: var(--foreground); }
+  
+  .primary{
+    padding:8px 12px; border-radius:10px; border:none; background: var(--accent); color:white; cursor:pointer;
+  }
+  .primary:hover{ filter: brightness(1.05); }
+  
