@@ -1,0 +1,21 @@
+{
+  "brand": "Defensor de la Tierra",
+  "menu": {
+    "start": "Inicio",
+    "story": "Narrativa",
+    "game": "Juego",
+    "simulation": "Simulación",
+    "ml": "Aprendizaje Automático",
+    "impact": "Zona de Impacto",
+    "impactLive": "Simulación en Vivo",
+    "impactCatalog": "Catálogo de Impactos"
+  },
+  "story": {
+    "intro": "Hace millones de años, un asteroide cambió la vida para siempre...",
+    "mission": "¡Tu misión es defender la Tierra del próximo impacto!"
+  }, "footer": {
+    "share": "¡Comparte tu experiencia en redes sociales!",
+    "terms": "Uso educativo únicamente",
+    "msgShare": "¡Acabo de aprender cómo proteger nuestro planeta con Earth Defender! 🌍🚀 @Neoscience #EarthDefender #SpaceApps #NASAChallenge"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "brand": "Earth Defender",
+  "menu": {
+    "start": "Start",
+    "story": "Story Telling",
+    "game": "Game",
+    "simulation": "Simulation",
+    "ml": "Machine Learning",
+    "impact": "Impact Zone",
+    "impactLive": "Live Simulation",
+    "impactCatalog": "Impact Catalog"
+  },
+  "story": {
+    "intro": "Millions of years ago, an asteroid changed life forever...",
+    "mission": "Your mission is to defend Earth from the next impact!"
+  },
+  "footer": {
+    "share": "Share your experience on social media!",
+    "terms": "Educational use only",
+    "msgShare": "I just learned how to protect our planet with Earth Defender! 🌍🚀 @Neoscience #EarthDefender #SpaceApps #NASAChallenge"
+  }
+}
