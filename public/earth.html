@@ -78,7 +78,7 @@
         scene.add(starField);
 
         // Luces
-        const sunLight = new THREE.DirectionalLight(0xbbeeff, 1.8);
+        const sunLight = new THREE.DirectionalLight(0xbbeeff, 1.5);
         sunLight.position.set(10, 5, 15);
         scene.add(sunLight);
 
@@ -122,7 +122,7 @@
         const earthBumpTexture = textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_bump_2048.jpg');
         const earthSpecTexture = textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_specular_2048.jpg');
 
-        const earthGeometry = new THREE.SphereGeometry(2, 64, 64);
+        const earthGeometry = new THREE.SphereGeometry(3.5, 64, 64);
         const earthMaterial = new THREE.MeshPhongMaterial({
             map: earthDayTexture,
             specularMap: earthSpecTexture,
@@ -134,7 +134,7 @@
         earth.position.set(0, 0, 0);
         scene.add(earth);
 
-        const cloudsGeometry = new THREE.SphereGeometry(2.02, 64, 64);
+        const cloudsGeometry = new THREE.SphereGeometry(3.52, 64, 64);
         const cloudsMaterial = new THREE.MeshPhongMaterial({
             map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_clouds_1024.png'),
             transparent: true,
@@ -145,7 +145,7 @@
         clouds.position.copy(earth.position);
         scene.add(clouds);
 
-        const atmosphereGeometry = new THREE.SphereGeometry(2.15, 64, 64);
+        const atmosphereGeometry = new THREE.SphereGeometry(3.15, 64, 64);
         const atmosphereMaterial = new THREE.ShaderMaterial({
             uniforms: {
                 c: { value: 0.08 },
@@ -205,7 +205,7 @@
                 this.velocity = new THREE.Vector3()
                     .subVectors(earth.position, this.mesh.position)
                     .normalize()
-                    .multiplyScalar(0.05 + Math.random() * 0.03);
+                    .multiplyScalar(0.02 + Math.random() * 0.01);
 
                 const trailGeometry = new THREE.BufferGeometry();
                 const trailPositions = new Float32Array(30 * 3);
@@ -253,7 +253,7 @@
             meteors.push(new Meteor());
         }
 
-        setInterval(createMeteorInstance, 2000);
+        setInterval(createMeteorInstance, 5000);
 
         // --- Lógica de Interacción del Mouse ---
         const raycaster = new THREE.Raycaster();

@@ -1,21 +1,67 @@
 {
-  "brand": "Defensor de la Tierra",
-  "menu": {
-    "start": "Inicio",
-    "story": "Narrativa",
+  "brand": "Neoscience",
+ "menu": {
+    "home": "Inicio",
+    "aboutProyect": "Acerca del Proyecto",
+    "story-telling": "Narrativa",
+    "aboutTeam":"Acerca de / Equipo",
+    "learn":"Aprender",
     "game": "Juego",
+    "quiz": "Quiz",
     "simulation": "Simulación",
-    "ml": "Aprendizaje Automático",
-    "impact": "Zona de Impacto",
-    "impactLive": "Simulación en Vivo",
-    "impactCatalog": "Catálogo de Impactos"
+    "impact-zone": "Zona de Impacto",
+    "mitigation":"Mitigación",
+    "exploreData":"Explora Datos",
+    "machine-learning": "Machine Learning",
+    "newsOfWeek":"Noticias",
+    "dailyImage":"Imagen del día",
+     "aiAssistant":"Asistente IA"  
   },
   "story": {
     "intro": "Hace millones de años, un asteroide cambió la vida para siempre...",
     "mission": "¡Tu misión es defender la Tierra del próximo impacto!"
   }, "footer": {
-    "share": "¡Comparte tu experiencia en redes sociales!",
+    "share": "¡Síguenos en nuestras redes y comparte tu experiencia.!",
     "terms": "Uso educativo únicamente",
     "msgShare": "¡Acabo de aprender cómo proteger nuestro planeta con Earth Defender! 🌍🚀 @Neoscience #EarthDefender #SpaceApps #NASAChallenge"
-  }
+  },
+  "appGame": { "title": "Misión Dart", "tagline": "¡Protege la Tierra!" ,
+                "restart": "Reiniciar", "howTo": "¿Cómo jugar?", "exit": "Salir", "shoot": "DISPARAR", "play": "¡Jugar!" },
+  "ariaGame": { "language": "Idioma" },
+  "hudGame": { "points": "Puntos", "best": "Mejor", "lives": "Vidas", "level": "Nivel" },
+  "bannerGame": {
+    "start": "Mueve la nave · Dispara a los asteroides · ¡Protege la Tierra! 🌍",
+    "levelUp": "Nivel {{level}} ↑",
+    "newRecord": "🎉 ¡Nuevo récord! {{points}} puntos",
+    "gameOver": "Juego terminado · Puntos: {{score}} · Nivel: {{level}}",
+    "hitEarth": "¡Cuidado! Un asteroide tocó la Tierra 😬"
+  },
+  "introGame": {
+    "title": "¿Qué fue la Misión DART?",
+    "summaryTitle": "🚀",
+    "summaryP1": "La misión <1>DART</1> probó la <3>defensa planetaria</3> con impacto cinético: chocar una nave para desviar un asteroide.",
+    "summaryP2": "Funcionó: un empujón pequeñito desvió la órbita. Con tiempo, eso evita un choque con la Tierra. 🌍🚀",
+    "summaryP3": "Mientras antes actúes, más fácil es desviar el asteroide.",
+    "tipsTitle": "Consejos para jugar",
+    "skip": "No mostrar esta intro la próxima vez",
+    "footerTip": "Tip: tienes 5 vidas."
+  },
+  "controlsGame": {
+    "move": "mover",
+    "space": "Espacio",
+    "shoot": "disparar",
+    "restart": "reiniciar",
+    "help": "ayuda",
+    "pause": "pausar",
+    "exit": "salir"
+  },
+  "tipsGame": {
+    "anticipate": { "b": "Anticípate:", "t": "dispara cuando el asteroide está alto; tendrás más intentos." },
+    "position": { "b": "Posiciónate:", "t": "ponte debajo de su trayectoria y muévete lo justo." },
+    "cadence": { "b": "Cadencia:", "t": "la nave tiene enfriamiento; no martilles el espacio." },
+    "priority": { "b": "Prioriza:", "t": "si uno viene centrado a la Tierra, ese va primero." },
+    "relax": { "b": "¡Tranqui!", "t": "si fallás, reiniciás y a la otra sale mejor 😉" }
+  
+}
+
 }

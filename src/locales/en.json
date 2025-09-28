@@ -1,22 +1,67 @@
 {
-  "brand": "Earth Defender",
+  "brand": "Neoscience",
   "menu": {
-    "start": "Start",
-    "story": "Story Telling",
+    "home": "Home",
+    "aboutProyect": "About the Project",
+    "story-telling": "Storytelling",
+    "aboutTeam":"About / Team",
+    "learn":"Learn",
     "game": "Game",
+    "quiz": "Quiz",
     "simulation": "Simulation",
-    "ml": "Machine Learning",
-    "impact": "Impact Zone",
-    "impactLive": "Live Simulation",
-    "impactCatalog": "Impact Catalog"
+    "impact-zone": "Impact Zone",
+    "mitigation":"Mitigation",
+    "exploreData":"Explore Data",
+    "machine-learning": "Machine Learning",
+    "newsOfWeek":"News",
+    "dailyImage":"Image of the Day",
+    "aiAssistant":"AI Assistant"  
   },
   "story": {
     "intro": "Millions of years ago, an asteroid changed life forever...",
     "mission": "Your mission is to defend Earth from the next impact!"
   },
   "footer": {
-    "share": "Share your experience on social media!",
+    "share": " Follow us on social media & share your experience!",
     "terms": "Educational use only",
     "msgShare": "I just learned how to protect our planet with Earth Defender! 🌍🚀 @Neoscience #EarthDefender #SpaceApps #NASAChallenge"
+  },
+  "appGame": { "title": "Dart Mission", "tagline": "Protect the Earth!" },
+  "buttonsGame": { "restart": "Restart", "howTo": "How to play?", "exit": "Exit", "shoot": "SHOOT", "play": "Play!" },
+  "ariaGame": { "language": "Language" },
+  "hudGame": { "points": "Points", "best": "Best", "lives": "Lives", "level": "Level" },
+  "bannerGame": {
+    "start": "Move the ship · Shoot asteroids · Protect Earth! 🌍",
+    "levelUp": "Level {{level}} ↑",
+    "newRecord": "🎉 New record! {{points}} points",
+    "gameOver": "Game over · Score: {{score}} · Level: {{level}}",
+    "hitEarth": "Careful! An asteroid hit Earth 😬"
+  },
+  "introGame": {
+    "title": "What was the DART Mission?",
+    "summaryTitle": "🚀",
+    "summaryP1": "<1>DART</1> tested <3>planetary defense</3> with kinetic impact: hitting an asteroid to nudge its orbit.",
+    "summaryP2": "It worked: a tiny push changed the orbit. With time, that avoids an Earth impact. 🌍🚀",
+    "summaryP3": "The earlier you act, the easier it is to deflect.",
+    "tipsTitle": "Tips",
+    "skip": "Don't show this intro next time",
+    "footerTip": "Tip: you have 5 lives."
+  },
+  "controlsGame": {
+    "move": "move",
+    "space": "Space",
+    "shoot": "shoot",
+    "restart": "restart",
+    "help": "help",
+    "pause": "pause",
+    "exit": "exit"
+  },
+  "tipsGame": {
+    "anticipate": { "b": "Anticipate:", "t": "shoot when the asteroid is high; you'll have more tries." },
+    "position": { "b": "Position:", "t": "get under its path and move just enough." },
+    "cadence": { "b": "Cadence:", "t": "there's a small cooldown; don't mash space." },
+    "priority": { "b": "Prioritize:", "t": "if one is headed straight to Earth, take it first." },
+    "relax": { "b": "Relax:", "t": "missed shots happen—restart and try again 😉" }
   }
+
 }

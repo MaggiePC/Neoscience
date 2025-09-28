@@ -1,5 +1,5 @@
 import { Outlet, useLocation, Link } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../components/HeaderMenu";
 import Footer from "../components/Footer";
 import Starfield from "./Starfield";
 import s from "./MainLayout.module.css";
