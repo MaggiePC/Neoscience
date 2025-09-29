@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Starfield from "./Starfield";
 import s from "./MainLayout.module.css";
 
+
 const steps = [
   { key: "/story-telling", icon: "📖", label: "Story" },
   { key: "/game",          icon: "🎮", label: "Game" },
@@ -34,7 +35,7 @@ export default function MainLayout(){
         </div>
       </main>
 
-      <footer className={s.footer}>
+      <footer className={s.footer }>
         <div className="container"><Footer/></div>
       </footer>
 

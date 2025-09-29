@@ -1,5 +1,13 @@
 // src/pages/NewsOfWeek.tsx
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { Share2, Link2 } from "lucide-react";
+import {
+  RiFacebookFill,
+  RiLinkedinFill,
+  RiTwitterXFill,
+  RiWhatsappFill,
+  RiTelegramFill,
+} from "react-icons/ri";
 
 /* ========= Tipos ========= */
 type Item = {
@@ -55,7 +63,54 @@ function tidySummary(raw?: string, max = 260) {
   return s.length > max ? s.slice(0, max - 1).trim() + "…" : s;
 }
 
-/* ========= Fetch rápido vía rss2json (contenido oficial) ========= */
+/* ========= Share helpers ========= */
+const addUtm = (url: string) => {
+  try {
+    const u = new URL(toHttps(url)!);
+    u.searchParams.set("utm_source", "neoscience");
+    u.searchParams.set("utm_medium", "share");
+    u.searchParams.set("utm_campaign", "news");
+    return u.toString();
+  } catch {
+    return url;
+  }
+};
+
+const shareLinksFor = (title: string, link: string) => {
+  const url = addUtm(link);
+  const text = `${title}`;
+  const enc = encodeURIComponent;
+  return {
+    x: `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(text)}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`,
+    whatsapp: `https://api.whatsapp.com/send?text=${enc(text + " " + url)}`,
+    telegram: `https://t.me/share/url?url=${enc(url)}&text=${enc(text)}`,
+  };
+};
+
+const tryNativeShare = async (title: string, link: string) => {
+  const url = addUtm(link);
+  if ((navigator as any).share) {
+    try {
+      await (navigator as any).share({ title, text: title, url });
+      return true;
+    } catch {
+      /* cancelado */
+    }
+  }
+  return false;
+};
+
+const openCentered = (href: string) => {
+  const w = 680,
+    h = 540;
+  const y = window.top?.outerHeight ? Math.max(0, (window.top.outerHeight - h) / 2) : 0;
+  const x = window.top?.outerWidth ? Math.max(0, (window.top.outerWidth - w) / 2) : 0;
+  window.open(href, "_blank", `width=${w},height=${h},left=${x},top=${y},noopener`);
+};
+
+/* ========= Fetch rápido vía rss2json ========= */
 async function fetchJSONWithFallback<T = any>(url: string): Promise<T> {
   try {
     const r = await fetch(url, { mode: "cors" });
@@ -119,7 +174,7 @@ function Carousel({ items }: { items: Item[] }) {
     if (!next) return;
     const img = new Image();
     img.referrerPolicy = "no-referrer";
-    img.src = next;
+    img.src = toHttps(next)!;
   }, [idx, list]);
 
   return (
@@ -146,6 +201,7 @@ function Carousel({ items }: { items: Item[] }) {
           {list.map((it) => {
             const img = toHttps(it.image) || PLACEHOLDER;
             const host = new URL(it.source).host.replace(/^www\./, "");
+            const share = shareLinksFor(it.title, it.link);
             return (
               <article key={it.link} className="p-4" style={{ width: CARD_W, height: CARD_H }}>
                 <div className="w-full h-full grid grid-rows-[auto_1fr_auto] gap-3">
@@ -162,27 +218,105 @@ function Carousel({ items }: { items: Item[] }) {
 
                   {/* Texto */}
                   <div className="overflow-hidden">
-                    <div className="text-xs opacity-70">{host} • {safeDate(it.pubDate)}</div>
-                    <h3 className="text-lg font-semibold leading-snug mt-1 line-clamp-2">
-                      {it.title}
-                    </h3>
+                    <div className="text-xs opacity-70">
+                      {host} • {safeDate(it.pubDate)}
+                    </div>
+                    <h3 className="text-lg font-semibold leading-snug mt-1 line-clamp-2">{it.title}</h3>
                     {it.summary && (
-                      <p className="text-sm mt-2 opacity-90 line-clamp-3">
-                        {it.summary}
-                      </p>
+                      <p className="text-sm mt-2 opacity-90 line-clamp-3">{it.summary}</p>
                     )}
                   </div>
 
-                  {/* Link */}
-                  <div className="text-right mt-2">
+                  {/* Acciones: leer + compartir */}
+                  <div className="flex items-center justify-between mt-2 gap-3">
                     <a
                       href={it.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-block font-bold **text-xl** hover:underline **py-2 px-4**"
+                      className="inline-block font-semibold hover:underline"
                     >
                       Leer más →
                     </a>
+
+                    {/* Botón Share + iconos redondos */}
+                    <div className="flex items-center gap-2">
+                     
+
+                      {/* Iconos de redes */}
+                      <a
+                        href={share.x}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openCentered(share.x);
+                        }}
+                        className="w-9 h-9 grid place-items-center rounded-full text-white hover:scale-105 transition"
+                        style={{ background: "#000000" }}
+                        title="Compartir en X"
+                        aria-label="Compartir en X"
+                      >
+                        <RiTwitterXFill size={18} />
+                      </a>
+
+                      <a
+                        href={share.facebook}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openCentered(share.facebook);
+                        }}
+                        className="w-9 h-9 grid place-items-center rounded-full text-white hover:scale-105 transition"
+                        style={{ background: "#1877F2" }}
+                        title="Compartir en Facebook"
+                        aria-label="Compartir en Facebook"
+                      >
+                        <RiFacebookFill size={18} />
+                      </a>
+
+                      <a
+                        href={share.linkedin}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openCentered(share.linkedin);
+                        }}
+                        className="w-9 h-9 grid place-items-center rounded-full text-white hover:scale-105 transition"
+                        style={{ background: "#0A66C2" }}
+                        title="Compartir en LinkedIn"
+                        aria-label="Compartir en LinkedIn"
+                      >
+                        <RiLinkedinFill size={18} />
+                      </a>
+
+                      <a
+                        href={share.whatsapp}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openCentered(share.whatsapp);
+                        }}
+                        className="w-9 h-9 grid place-items-center rounded-full text-white hover:scale-105 transition"
+                        style={{ background: "#25D366" }}
+                        title="Compartir en WhatsApp"
+                        aria-label="Compartir en WhatsApp"
+                      >
+                        <RiWhatsappFill size={18} />
+                      </a>
+
+
+                      {/* Copiar enlace */}
+                      <button
+                        onClick={async () => {
+                          try {
+                            await navigator.clipboard.writeText(addUtm(it.link));
+                            alert("Enlace copiado ✅");
+                          } catch {
+                            alert("No se pudo copiar 😬");
+                          }
+                        }}
+                        className="w-9 h-9 grid place-items-center rounded-full text-white hover:scale-105 transition bg-gray-700"
+                        title="Copiar enlace"
+                        aria-label="Copiar enlace"
+                      >
+                        <Link2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -191,76 +325,80 @@ function Carousel({ items }: { items: Item[] }) {
         </div>
       </div>
 
-      {/* Controles laterales como BOTONES con texto */}
       {/* Flechas laterales GRANDES */}
+      {list.length > 1 && (
+        <>
+          <button
+            aria-label="Anterior"
+            onClick={goPrev}
+            style={{
+              position: "absolute",
+              left: 12,
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: 72,
+              height: 72,
+              borderRadius: "9999px",
+              background: "rgba(0,0,0,.75)",
+              color: "#fff",
+              zIndex: 50,
+              display: "grid",
+              placeItems: "center",
+              border: "none",
+              cursor: "pointer",
+              boxShadow: "0 6px 16px rgba(0,0,0,.35)",
+            }}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="36"
+              height="36"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
 
-{list.length > 1 && (
-  <>
-    <button
-      aria-label="Anterior"
-      onClick={goPrev}
-      style={{
-        position: "absolute",
-        left: 12,
-        top: "50%",
-        transform: "translateY(-50%)",
-        width: 72,           // <-- tamaño del círculo
-        height: 72,          // <-- tamaño del círculo
-        borderRadius: "9999px",
-        background: "rgba(0,0,0,.75)",
-        color: "#fff",
-        zIndex: 50,
-        display: "grid",
-        placeItems: "center",
-        border: "none",
-        cursor: "pointer",
-        boxShadow: "0 6px 16px rgba(0,0,0,.35)",
-      }}
-    >
-      <svg
-        viewBox="0 0 24 24"
-        width="36" height="36" // <-- tamaño del ícono
-        stroke="currentColor" strokeWidth="2" fill="none"
-        strokeLinecap="round" strokeLinejoin="round"
-      >
-        <polyline points="15 18 9 12 15 6" />
-      </svg>
-    </button>
-
-    <button
-      aria-label="Siguiente"
-      onClick={goNext}
-      style={{
-        position: "absolute",
-        right: 12,           // <-- OJO: right, no left
-        top: "50%",
-        transform: "translateY(-50%)",
-        width: 72,
-        height: 72,
-        borderRadius: "9999px",
-        background: "rgba(0,0,0,.75)",
-        color: "#fff",
-        zIndex: 50,
-        display: "grid",
-        placeItems: "center",
-        border: "none",
-        cursor: "pointer",
-        boxShadow: "0 6px 16px rgba(0,0,0,.35)",
-      }}
-    >
-      <svg
-        viewBox="0 0 24 24"
-        width="36" height="36"
-        stroke="currentColor" strokeWidth="2" fill="none"
-        strokeLinecap="round" strokeLinejoin="round"
-      >
-        <polyline points="9 18 15 12 9 6" />
-      </svg>
-    </button>
-  </>
-)}
-
-
+          <button
+            aria-label="Siguiente"
+            onClick={goNext}
+            style={{
+              position: "absolute",
+              right: 12,
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: 72,
+              height: 72,
+              borderRadius: "9999px",
+              background: "rgba(0,0,0,.75)",
+              color: "#fff",
+              zIndex: 50,
+              display: "grid",
+              placeItems: "center",
+              border: "none",
+              cursor: "pointer",
+              boxShadow: "0 6px 16px rgba(0,0,0,.35)",
+            }}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="36"
+              height="36"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </>
+      )}
     </div>
   );
 }
